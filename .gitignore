@@ -1,0 +1,16 @@
+# Data
+data/
+*.csv
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Models
+models/
+
+# Python
+__pycache__/
+*.pyc
+
+# Environment
+.env
