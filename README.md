@@ -79,7 +79,7 @@ fraud-detection-paysim
 ├── requirements.txt
 ├── environment.yml
 └── README.md
-```text
+```
 
 ## Installation
 
