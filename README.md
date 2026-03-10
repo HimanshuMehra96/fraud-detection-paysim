@@ -50,7 +50,7 @@ Important features include:
 The dataset is extremely imbalanced, making precision–recall metrics more suitable than accuracy.
 
 ## Project Structure
-
+```text
 fraud-detection-paysim
 │
 ├── data
@@ -79,6 +79,7 @@ fraud-detection-paysim
 ├── requirements.txt
 ├── environment.yml
 └── README.md
+```text
 
 ## Installation
 
