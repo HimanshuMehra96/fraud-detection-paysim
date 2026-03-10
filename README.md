@@ -54,11 +54,9 @@ The dataset is extremely imbalanced, making precision–recall metrics more suit
 fraud-detection-paysim
 │
 ├── data
-│   ├── raw
-│   │   └── PaySim dataset (downloaded from Kaggle)
-│   └── processed
-│       ├── X_test.csv
-│       └── y_test.csv
+│   ├── PaySim dataset (downloaded from Kaggle)
+│   ├── X_test.csv
+│   └── y_test.csv
 │
 ├── notebooks
 │   ├── EDA
