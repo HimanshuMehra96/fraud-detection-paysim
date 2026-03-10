@@ -1,39 +1,63 @@
 import pandas as pd
 import xgboost as xgb
+
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import roc_auc_score, classification_report, confusion_matrix
+from sklearn.metrics import classification_report, confusion_matrix, precision_recall_curve, average_precision_score
+import matplotlib.pyplot as plt
 
-df = pd.read_csv("data/processed_fraud_dataset.csv")
+from features import preprocess_dataset
 
-X = df.drop(columns=["isFraud"])
-y = df["isFraud"]
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, stratify=y, test_size=0.2, random_state=42
-)
+DATA_PATH = "data/fraud_detection_paysim_dataset.csv"
 
-scale_pos_weight = y_train.value_counts()[0] / y_train.value_counts()[1]
+def main():
 
-print(scale_pos_weight)
+    print("Loading dataset...")
 
-model = xgb.XGBClassifier(
-    n_estimators=300,
-    max_depth=6,
-    learning_rate=0.1,
-    scale_pos_weight=scale_pos_weight,
-    n_jobs=-1,
-    random_state=42
-)
+    df = pd.read_csv(DATA_PATH)
 
-model.fit(X_train, y_train)
+    print("Preprocessing data...")
 
-y_pred = model.predict(X_test)
+    X, y = preprocess_dataset(df)
 
-y_prob = model.predict_proba(X_test)[:,1]
-print(confusion_matrix(y_test, y_pred))
-print(classification_report(y_test, y_pred))
-roc_auc = roc_auc_score(y_test, y_prob)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X,
+        y,
+        stratify=y,
+        test_size=0.2,
+        random_state=42
+    )
 
-print("ROC AUC:", roc_auc)
 
-model.save_model("models/xgb_model.json")
+    # Save test set
+    X_test.to_csv("data/processed_X_test.csv", index=False)
+    y_test.to_csv("data/processed_y_test.csv", index=False)
+
+    print("Training model...")
+
+    scale_pos_weight = y_train.value_counts()[0] / y_train.value_counts()[1]
+
+    print(scale_pos_weight)
+
+    model = xgb.XGBClassifier(
+        n_estimators=300,
+        max_depth=6,
+        learning_rate=0.1,
+        scale_pos_weight=scale_pos_weight,
+        n_jobs=-1,
+        random_state=42
+    )
+
+    model.fit(X_train, y_train)
+
+    print("Saving model...")
+
+    model.save_model("models/xgb_model2.json")
+
+    print("Training complete.")
+
+    print(classification_report(y_test, model.predict(X_test)))
+
+
+if __name__ == "__main__":
+    main()
