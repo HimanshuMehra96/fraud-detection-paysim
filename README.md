@@ -156,9 +156,11 @@ amount / oldbalanceOrg
 
 Fraud occurs almost exclusively in:
 
+```text
 TRANSFER
 
 CASH_OUT
+```
 
 Binary indicator:
 ```text
