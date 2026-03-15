@@ -14,6 +14,7 @@ dependencies:
   - seaborn
   - jupyterlab
   - pip
+  - pytest
 
   - pip:
       - lightgbm

@@ -251,6 +251,12 @@ Performance metrics:
 
 The model detects nearly all fraudulent transactions while maintaining extremely low false positives.
 
+## Unit Testing
+
+```bash
+pytest tests/
+```
+
 ## Key Insights from EDA
 
 1. Several patterns strongly correlate with fraud:
