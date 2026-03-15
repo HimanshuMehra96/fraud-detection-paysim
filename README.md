@@ -24,6 +24,9 @@ The dataset used is the PaySim synthetic mobile money transactions dataset.
 Dataset source:
 https://www.kaggle.com/datasets/ealaxi/paysim1
 
+Source: Kaggle
+License: CC BY-SA 4.0 - Link: https://creativecommons.org/licenses/by-sa/4.0/
+
 | Property | Value |
 |----------|-------|
 | Samples | ~6.3 million transactions |
